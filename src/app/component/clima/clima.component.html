@@ -1,0 +1,152 @@
+
+    <header>
+            <img src="./../../../assets/8f11fdf0e5a44f22a5f7ae72a0ff5cb0(1)_preview_rev_1.png" alt="Logo" title="TuClima">
+          </header>
+          <main>
+              <div class="contenedor_busqueda">
+
+
+                  <div class="select_provincia">
+                      <label id="prov">SELECCIONA UNA PROVINCIA</label>
+                      <i class="fa-solid fa-location-dot"></i>
+
+                      <select [(ngModel)]="cod_prov_seleccionada" (change)="obtenerId()">
+                        <option *ngFor="let prov of clima?.provincias" value={{prov.CODPROV}}>
+                          -  {{prov.NOMBRE_PROVINCIA }}
+                             ({{prov.COMUNIDAD_CIUDAD_AUTONOMA}})
+                        </option>
+                      </select>
+                  </div>
+
+
+                  <div class="select_municipio">
+                      <label id="mun">SELECCIONA UN MUNICIPIO</label>
+                      <i class="fa-solid fa-location-dot"></i>
+
+                      <select  [(ngModel)]="cod_mun_seleccionado" >
+                        <option *ngFor="let muni of detallesMuni?.ciudades" value={{muni.id}}>
+                          - {{ muni.name }}
+                        </option>
+                      </select>
+                  </div>
+
+                  <div class="consultar">
+                      <button id="mostrar" (click)="verDetalles()" ><i class="fa-solid fa-magnifying-glass"></i></button>
+                  </div>
+              </div>
+              <div class="contenido" *ngFor="let details of detallesClima" >
+                <div>
+                  <div class="nombre">
+                     <h4>{{details.municipio.NOMBRE}}</h4>
+                  </div>
+                  <div class="fecha">
+                      <h4 id="fecha">{{details.fecha}}</h4>
+                  </div>
+                  <div class="grados">
+                      <p>{{details.temperatura_actual}}º</p>
+                  </div>
+
+                  <div class="estado">
+                      <p *ngIf="details.stateSky.description == 'Despejado'"><img src="../../../assets/sun.png"> </p>
+                      <p *ngIf=" details.stateSky.description == 'Intervalos nubosos'"><img src="../../../assets/sun-cloud.png"> </p>
+                      <p *ngIf="details.stateSky.description == 'Poco nuboso' || details.stateSky.description == 'Nubes altas'"> <img src="../../../assets/cloud.png" alt="Poco Nuboso" ></p>
+                      <p *ngIf="details.stateSky.description == 'Nuboso' || details.stateSky.description == 'Cubierto' || details.stateSky.description == 'Muy nuboso'"> <img src="../../../assets/clouds.png" alt="Lluvia" ></p>
+                      <p *ngIf="details.stateSky.description == 'Cubierto con lluvia escasa' || details.stateSky.description == 'Intervalos nubosos con lluvia escasa' || details.stateSky.description == 'Cubierto con lluvia' || details.stateSky.description == 'Muy nuboso con lluvia escasa'"> <img src="../../../assets/rain.png" alt="Lluvia" ></p>
+                      <p *ngIf="details.stateSky.description == 'Cubierto con tormenta' || details.stateSky.description == 'Nuboso con tormenta' || details.stateSky.description == 'Muy nuboso con tormenta'  || details.stateSky.description == 'Cubierto con tormenta y lluvia escasa'"> <img src="../../../assets/storm.png" alt="Lluvia" ></p>
+
+                      <h4>{{details.stateSky.description}}</h4>
+                  </div>
+                  <div class="temperaturas">
+                      <span class="max"><i class="fa-solid fa-temperature-sun"></i>MAX: {{details.temperaturas.max}}ºC</span>
+                      <span class="min"><i class="fa-sharp fa-solid fa-temperature-sun"></i>MIN: {{details.temperaturas.min}}ºC</span>
+                  </div>
+                  <div class="extras">
+                      <div class="humedad">
+                        <img src="../../../assets/humidity.png" alt="Humedad" >
+                          <h4>Humedad</h4>
+                          <p>{{details.humedad}}%</p>
+                      </div>
+                      <div class="viento">
+                        <img src="../../../assets/wind.png" alt="Viento" >
+                          <h4>Viento</h4>
+                          <p>{{details.viento}}km/h</p>
+                      </div>
+                      <div class="lluvia">
+                          <img src="../../../assets/umbrella.png" alt="Lluvia" >
+                          <h4>Lluvia</h4>
+                          <p *ngIf="details.lluvia == ''"> 0% </p>
+                          <p *ngIf="details.lluvia != ''"> {{details.lluvia}}%</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="mapa" >
+                  <div class="map-canvas" id="map">
+                      <picture>
+                          <img width="900" src="https://maps.googleapis.com/maps/api/staticmap?center={{details.municipio.NOMBRE_PROVINCIA}},{{details.municipio.NOMBRE}}&zoom=12&scale=2&size=600x300&maptype=terrain&format=png&key=AIzaSyBh7YDcBGXC-18yhNbl8JukSC14l6R26eA" alt="Google map of {{details.municipio.NOMBRE}}" />
+                      </picture>
+
+                 </div>
+                  <div class="info-dia">
+                      <!-- <div class="amanecer-ocaso">
+                          <div class="amanecer">
+                              <span class="titu">AMANECER</span>
+                              <span><i class="fa-sharp fa-solid fa-sunrise"></i>{{details.pronostico.hoy.attributes?.ocaso}}</span>
+                          </div>
+                          <div class="anochecer">
+                              <span class="titu">ANOCHECER</span>
+                              <span><i class="fa-sharp fa-solid fa-sunset"></i></span>
+                          </div>
+                      </div> -->
+                      <div class="info-localidad">
+                          <div class="prov-cap-po">
+                              <div class="provincia">
+                                  <span class="titu">PROVINCIA</span>
+                                  <span>{{details.municipio.NOMBRE_PROVINCIA}}</span>
+                              </div>
+                              <div class="capital">
+                                  <span class="titu">CAPITAL</span>
+                                  <span>{{details.municipio.NOMBRE}}</span>
+                              </div>
+                              <div class="poblacion">
+                                  <span class="titu">POBLACION</span>
+                                  <span>{{details.municipio.POBLACION_MUNI}}</span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="info-localidad">
+                          <div class="prov-cap-po">
+                              <div class="superficie">
+                                  <span class="titu">SUPERFICIE</span>
+                                  <span>{{details.municipio.SUPERFICIE}} km2</span>
+                              </div>
+                              <div class="perimetro">
+                                  <span class="titu">PERIMETRO</span>
+                                  <span>{{details.municipio.PERIMETRO}} km </span>
+                              </div>
+                              <div class="altitud">
+                                  <span class="titu">ALTITUD</span>
+                                  <span>{{details.municipio.ALTITUD}} {{details.municipio.ORIGEN_ALTITUD}}</span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="info-localidad" >
+                          <div class="prov-cap-po">
+                              <div class="superficie">
+                                  <span class="titu">LONGITUD</span>
+                                  <!-- <input type="text" name="2"  value={{details.municipio.LONGITUD_ETRS89_REGCAN95}} (ngModelChange)="escribir()" [(ngModel)]="longitud"> -->
+                                  <span id="long">{{details.municipio.LONGITUD_ETRS89_REGCAN95}}</span>
+                              </div>
+                              <div class="perimetro">
+                                  <span class="titu">LATITUD</span>
+                                  <!-- <input type="text"  value={{details.municipio.LATITUD_ETRS89_REGCAN95}} [(ngModel)]="latitud" de> -->
+                                  <span id="lat" >{{details.municipio.LATITUD_ETRS89_REGCAN95}}</span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </main>
+          <footer>
+              <p>Aplicacion realizada con   <b>  elTiempo.net ©2022</b></p>
+          </footer>

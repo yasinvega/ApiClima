@@ -1,0 +1,363 @@
+
+/* header */
+header{
+
+  margin-bottom: 10vh;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 15px;
+}
+header img{
+  display: flex;
+  margin: auto;
+  height: 10vh;
+  background-color: transparent;
+}
+
+
+/*CONTENEDOR PRINCIPAL */
+
+.contenedor_busqueda{
+  text-align: center;
+  background-color: #3d628a;
+  margin: auto;
+  height: 15vh;
+  width:1000px;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #f0f0f0;
+}
+.contenedor_busqueda label{
+  display: flex;
+  flex-direction: column;
+
+}
+/*SELECT PROVINCIA */
+.select_provincia {
+  display: inline-flex;
+  position: relative;
+}
+.select_provincia select{
+  width: 300px;
+  height: 40px;
+  background-color: #275280;
+  color: #f0f0f0;
+  border: 1px solid #f0f0f0;
+
+}
+.select_provincia i{
+  border: 1px solid #f0f0f0;
+  height: 38px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*SELECT MUNICIPIO */
+.select_municipio {
+  display: inline-flex;
+  position: relative;
+
+}
+.select_municipio select{
+  width: 300px;
+  height: 40px;
+  margin-right: 30px;
+  background-color: #275280;
+  color: #f0f0f0;
+  border: 1px solid #f0f0f0;
+}
+
+.select_municipio i{
+  border: 1px solid #f0f0f0;
+  height: 38px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*BOTON CONSULTAR*/
+.consultar button{
+      width: 60px;
+      height: 40px;
+      background-color: #275280;
+      border:1px solid #f0f0f0;
+      color: #f0f0f0;
+
+}
+
+.consultar button:hover{
+  transition: 1s;
+  background-color: #f0f0f0;
+  color: #275280;
+}
+
+/*INFORMACION CLIMA*/
+.nombre{
+  width: fit-content;
+  margin: auto;
+  text-transform: uppercase;
+}
+.fecha{
+  width: fit-content;
+  margin: auto;
+  text-transform: uppercase;
+}
+.grados{
+  width: fit-content;
+  margin: auto;
+}
+.grados p{
+  height: fit-content;
+  padding: 0%;
+  margin: 0;
+  font-size: 100px;
+}
+.estado{
+  width: fit-content;
+  margin: auto;
+  display: flex;
+  flex-direction:  row;
+  justify-content: center;
+  align-items: baseline;
+}
+.estado i,
+.estado h4{
+ padding: 20px;
+}
+.temperaturas{
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+.temperaturas span{
+  padding: 0 50px;
+  font-size: 30px;
+}
+.temperaturas .max{
+  color:rgb(255, 201, 39)
+}
+.temperaturas .min{
+  color: rgb(0, 166, 255);
+}
+.extras{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 5vh;
+}
+.extras img{
+  margin-top: 20px;
+}
+.extras .humedad{
+  background-color:#3d628a ;
+  width: 10vw;
+  display: block;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.extras .viento{
+  background-color:#3d628a ;
+  width: 10vw;
+  display: block;
+  text-align: center;
+  font-size: 1.2rem;
+}
+.extras .lluvia{
+  background-color:#3d628a ;
+  width: 10vw;
+  display: block;
+  text-align: center;
+  font-size: 1.2rem;
+}
+/*mapa*/
+
+.mapa{
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  width: 80%;
+  margin: auto;
+}
+.mapa .map-canvas{
+  width: 50%;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #275280;
+}
+.info-dia{
+  width: 50%;
+  background-color: #3d628a;
+  height: min-content;
+  display: block;
+  align-self: center;
+}
+.amanecer-ocaso{
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  padding: 10px;
+}
+.amanecer{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.anochecer{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.amanecer-ocaso span{
+  font-weight: bold;
+  font-size: large;
+}
+
+
+.prov-cap-po{
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  padding: 10px;
+}
+
+.prov-cap-po span{
+  font-weight: bold;
+  font-size: large;
+}
+
+.info-localidad{
+  margin-top: 4vh;
+}
+.provincia,
+.capital,
+.poblacion,
+.superficie,
+.perimetro,
+.altitud{
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+}
+.titu{
+  color: #818181;
+  font-size: 15px !important;
+}
+
+
+/*FOOTER*/
+
+footer{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  margin-top: 10vh;
+  height: 10vh;
+  bottom: 0;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 15px;
+}
+
+#map {
+	height: 500px;
+	width: 90%;
+}
+
+
+
+
+
+@media only screen and (max-width: 600px) {
+  .contenedor_busqueda{
+    width: auto;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .select_municipio{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 25px;
+  }
+  .select_municipio i{
+    display: none;
+  }
+  .select_municipio label{
+    margin: auto;
+  }
+  .select_provincia{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .select_provincia i{
+    display: none;
+  }
+  #map img{
+    width: 3600px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+    .contenedor_busqueda{
+      width: auto;
+      display: flex;
+      justify-content: space-evenly;
+      flex-direction: column;
+
+    }
+    .select_municipio i{
+      margin-left: 100px;
+    }
+    .select_provincia i{
+      margin-left: 60px;
+    }
+    #mun{
+      margin-left: 60px;
+    }
+    .consultar button{
+      margin-top: 20px;
+    }
+
+    #map img{
+      width: 600px !important;
+      display: flex;
+    }
+    .info-dia{
+      width: 360px;
+    }
+    .humedad{
+      width: 150px !important;
+    }
+    .viento{
+      width: 150px !important;
+    }
+    .lluvia{
+      width: 150px !important;
+    }
+}
+
+@media only screen and (max-width: 1440px) {
+  .mapa{
+    flex-direction: column;
+    align-items: center;
+  }
+  .map-canvas{
+    background-color: #275280;
+  }
+}
+
